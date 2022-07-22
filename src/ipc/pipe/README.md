@@ -1,11 +1,12 @@
 # What are pipes?
+
 Reference: pipe(7) page.
 
-*A Pipe is a unidirectional interprocess communication channel which has a read end and write end. It is created using pipe(2) function.*
+**A Pipe is a unidirectional interprocess communication channel which has a read end and write end. It is created using pipe(2) function.**
 
 ## Function Definition:
-    #include <unistd.h>
 
+    #include <unistd.h>
     int pipe(int pipefd[2]);
 
 Here pipefd[0] refers to the read end and pipefd[1] refers to the write end. Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe. pipe(2) conforms to POSIX.1-2001, POSIX.1-2008.
@@ -17,13 +18,13 @@ A pipe is a data stream, which implies that there is no message boundary. This m
 The blocking behavior can be utilized to implement a simple signalling/synchronization mechanism (sleep/wakeup) between 2 related processed.
  
 read(2):
-    #include <unistd.h>
 
+    #include <unistd.h>
     ssize_t read(int fd, void *buf, size_t count);
 
 write(2):
-    #include <unistd.h>
 
+    #include <unistd.h>
     ssize_t write(int fd, const void *buf, size_t count);
 
 ## Pipe Capacity:
