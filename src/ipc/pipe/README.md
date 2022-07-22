@@ -1,4 +1,4 @@
-#What are pipes?
+# What are pipes?
 Reference: pipe(7) page. 
 A Pipe is a unidirectional interprocess communication channel which has a read end and write end. It is created using pipe(2) function.
     #include <unistd.h>
@@ -19,9 +19,9 @@ write(2):
 
     ssize_t write(int fd, const void *buf, size_t count);
 
-##Pipe Capacity:
+## Pipe Capacity:
 A pipe has limited capacity. If the pipe is full, then a write(2) will block or fail, depending on whether the O_NONBLOCK flag is set. Applications should not rely on a particular capacity: an application should be designed so that a reading process consumes data as soon as it is available, so that a writing process does not remain blocked.
 The capacity can be queried and set using the fcntl(2) F_GETPIPE_SZ and F_SETPIPE_SZ operations.
 
-##PIPE_BUF:
+## PIPE_BUF:
 As per Posix  writes of less than PIPE_BUF bytes must be atomic: the output data is written to the pipe as a contiguous sequence.  Writes of more than PIPE_BUF bytes may be nonatomic: the kernel may interleave the data with data written by other processes.  POSIX.1 requires PIPE_BUF to be at least 512 bytes. On linux it is 4096 bytes.
