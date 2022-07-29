@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <sys/wait.h>
 #include <iostream>
 
@@ -10,13 +11,6 @@
 #define SLEEP_AT_CHILD  1
 
 /*
- * Send primitive data between processes.
- */
-/*int send_data_between_proc() {
-
-}*/
-
-/*
  * Demo program to demonstrate signalling between parent and child.
  * Child (do some operation) -> Signal Parent about completion of operation->
  * parent wakes up and exits.
@@ -24,7 +18,7 @@
 int signal_between_parentchild(int where_to_sleep) {
   int fd[2];
   int result_dummy = 0;
-  pipe(fd);
+  assert(0 == pipe(fd));
   pid_t cPid;
   cPid = fork();
   if (cPid == 0) {  // child
@@ -46,7 +40,7 @@ int signal_between_parentchild(int where_to_sleep) {
     std::cout << "Hello From Parent" << std::endl;
     wait(NULL);
   } else {
-    printf("fork() failed\n");
+    std::cout << "fork() failed" << std::endl;
     return -1;
   }
   return 0;
